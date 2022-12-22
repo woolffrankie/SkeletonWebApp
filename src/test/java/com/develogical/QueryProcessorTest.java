@@ -55,4 +55,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("What is 14 minus 2?"), containsString("12"));
     }
 
+    @Test
+    public void knowsPrimes() throws Exception {
+        assertThat(queryProcessor.process("Which of the following numbers are primes: 0, 34, 40, 91, 66?"), containsString("0"));
+    }
+
 }

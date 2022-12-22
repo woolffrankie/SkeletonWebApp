@@ -41,6 +41,10 @@ public class QueryProcessor {
             return Integer.toString(minus(query));
         }
 
+        if (query.toLowerCase().contains("prime")) {
+            return Integer.toString(prime(query));
+        }
+
         return "";
     }
 
@@ -120,5 +124,42 @@ public class QueryProcessor {
             return false;
         }
     }
+
+    private int prime(String query){
+        String[] queryArray = query.split(" ");
+
+        for(int i = 7; i < 11; i++){
+            int cleanNumber = Integer.valueOf(queryArray[i].split(",")[0]);
+            if (isItPrime(cleanNumber)){
+                return cleanNumber;
+            }
+        }
+
+        int cleanNumber = Integer.valueOf(queryArray[11].split("\\?")[0]);
+        if (isItPrime(cleanNumber)){
+            return cleanNumber;
+        }
+
+        return 0;
+    }
+
+    private Boolean isItPrime(int num){
+        if (num == 0){
+            return false;
+        } else {
+            return isPrime(num);
+        }
+    }
+
+    static boolean isPrime(int num){
+        for(int i=2;i<=num/2;i++) {
+
+            if ((num % i) == 0)
+                return false;
+        }
+        return true;
+    }
+
+
 
 }
