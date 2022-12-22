@@ -25,4 +25,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("What is your name?"), containsString("AppleMac"));
     }
 
+    @Test
+    public void knowsHowToAdd() throws Exception {
+        assertThat(queryProcessor.process("What is 3 plus 7"), containsString("10"));
+    }
+
 }

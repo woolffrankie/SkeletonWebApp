@@ -5,6 +5,8 @@ import java.util.function.BinaryOperator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Integer.valueOf;
+
 public class QueryProcessor {
 
     public String process(String query) {
@@ -19,7 +21,19 @@ public class QueryProcessor {
             return "AppleMac";
         }
 
+        if (query.toLowerCase().contains("plus")) {
+            return Integer.toString(add(query));
+        }
+
+
         return "";
+    }
+
+    private int add(String query){
+        String[] queryArray = query.split(" ");
+        int length = queryArray.length;
+//        int position = queryArray.findIndex("plus");
+        return valueOf(queryArray[length-1]) + valueOf(queryArray[length-3]);
     }
     
 }
