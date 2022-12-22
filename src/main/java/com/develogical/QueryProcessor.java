@@ -29,6 +29,9 @@ public class QueryProcessor {
             return Integer.toString(largest(query));
         }
 
+        if (query.toLowerCase().contains("multiplied")) {
+            return Integer.toString(multiply(query));
+        }
 
         return "";
     }
@@ -54,5 +57,13 @@ public class QueryProcessor {
         } else {
             return thirdNum;
         }
+    }
+
+    private int multiply(String query){
+        String[] queryArray = query.split(" ");
+//        int length = queryArray.length;
+        String firstNum = queryArray[2];
+        String[] secondNum = queryArray[5].split("\\?");
+        return valueOf(firstNum) * valueOf(secondNum[0]);
     }
 }

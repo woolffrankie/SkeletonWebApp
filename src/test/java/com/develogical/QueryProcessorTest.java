@@ -40,4 +40,9 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("Which of the following numbers is the largest: 23, 35, 40?"), containsString("40"));
     }
 
+    @Test
+    public void knowsHowToMultiply() throws Exception {
+        assertThat(queryProcessor.process("What is 73 multiplied by 56?"), containsString("4088"));
+    }
+
 }
