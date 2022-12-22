@@ -25,9 +25,9 @@ public class QueryProcessor {
             return Integer.toString(add(query));
         }
 
-//        if (query.toLowerCase().contains("largest")) {
-//            return Integer.toString(largest(query));
-//        }
+        if (query.toLowerCase().contains("largest")) {
+            return Integer.toString(largest(query));
+        }
 
 
         return "";
@@ -40,11 +40,19 @@ public class QueryProcessor {
         return valueOf(firstNum[0]) + valueOf(queryArray[length-3]);
     }
 
-//    private int largest(String query){
-//        String[] queryArray1 = query.split(" ");
-//        String[] queryArray2 = query.split(" ");
-//        int length = queryArray.length;
-//        return valueOf(queryArray[length-1]) + valueOf(queryArray[length-3]);
-//    }
-    
+    private int largest(String query) {
+        String[] queryArray1 = query.split(" ");
+        int length = queryArray1.length;
+        int firstNum = Integer.valueOf(queryArray1[8].split(",")[0]);
+        int secondNum = Integer.valueOf(queryArray1[9].split(",")[0]);
+        int thirdNum = Integer.valueOf(queryArray1[10].split("\\?")[0]);
+
+        if (firstNum > secondNum && firstNum > thirdNum) {
+            return firstNum;
+        } else if (secondNum > thirdNum) {
+            return secondNum;
+        } else {
+            return thirdNum;
+        }
+    }
 }
