@@ -33,6 +33,10 @@ public class QueryProcessor {
             return Integer.toString(multiply(query));
         }
 
+        if (query.toLowerCase().contains("both a square and a cube")) {
+            return Integer.toString(squareAndCube(query));
+        }
+
         return "";
     }
 
@@ -61,9 +65,48 @@ public class QueryProcessor {
 
     private int multiply(String query){
         String[] queryArray = query.split(" ");
-//        int length = queryArray.length;
         String firstNum = queryArray[2];
         String[] secondNum = queryArray[5].split("\\?");
         return valueOf(firstNum) * valueOf(secondNum[0]);
+    }
+
+    private int squareAndCube(String query){
+        String[] queryArray = query.split(" ");
+
+        //12-17
+        for(int i = 12; i < 18; i++){
+            int cleanNumber = Integer.valueOf(queryArray[i].split(",")[0]);
+            if (isItSquare(cleanNumber) && isItCube(cleanNumber)){
+                return cleanNumber;
+            }
+        }
+
+        //18
+        int cleanNumber = Integer.valueOf(queryArray[18].split("\\?")[0]);
+        if (isItSquare(cleanNumber) && isItCube(cleanNumber)){
+            return cleanNumber;
+        }
+
+        return 0;
+    }
+
+    private Boolean isItSquare(int num){
+        double number = Math.sqrt(num);
+
+        if ( number == (int)number){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private Boolean isItCube(int num){
+        double number = Math.cbrt(num);
+
+        if ( number == (int)number){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
