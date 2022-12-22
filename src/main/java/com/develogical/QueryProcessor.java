@@ -37,6 +37,10 @@ public class QueryProcessor {
             return Integer.toString(squareAndCube(query));
         }
 
+        if (query.toLowerCase().contains("minus")) {
+            return Integer.toString(minus(query));
+        }
+
         return "";
     }
 
@@ -45,6 +49,13 @@ public class QueryProcessor {
         int length = queryArray.length;
         String[] firstNum = queryArray[length-1].split("\\?");
         return valueOf(firstNum[0]) + valueOf(queryArray[length-3]);
+    }
+
+    private int minus(String query){
+        String[] queryArray = query.split(" ");
+        int length = queryArray.length;
+        String[] firstNum = queryArray[length-1].split("\\?");
+        return valueOf(firstNum[0]) - valueOf(queryArray[length-3]);
     }
 
     private int largest(String query) {
@@ -109,4 +120,5 @@ public class QueryProcessor {
             return false;
         }
     }
+
 }
